@@ -15,6 +15,10 @@ pytz = "*"
 six = "*"
 sqlparse = "*"
 urllib3 = "*"
+tzdata = "*"
+drf-yasg = "*"
+django-cors-headers = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
