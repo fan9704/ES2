@@ -8,6 +8,7 @@ asgiref = "*"
 certifi = "*"
 django = "*"
 djangorestframework = "*"
+celery ="*"
 elasticsearch = "*"
 elasticsearch-dsl = "*"
 python-dateutil = "*"
@@ -15,6 +16,10 @@ pytz = "*"
 six = "*"
 sqlparse = "*"
 urllib3 = "*"
+tzdata = "*"
+drf-yasg = "*"
+django-cors-headers = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

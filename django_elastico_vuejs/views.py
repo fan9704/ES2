@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.views.generic import TemplateView
 from django_elastico_vuejs.models.api.models import ArticleRequestSerializer, SearchArticleRequestSerializer, \
     Article
@@ -94,3 +95,13 @@ def execute_search(query):
     serializer = ArticleSerializer(data=all_results, many=True)
     serializer.is_valid()
     return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+from .tasks import add, mul
+
+
+class task_demo(APIView):
+    def post(self, request):
+        res = add.delay(10, 20)
+        print(res.task_id)  # 返回task_id
+        return JsonResponse({"code": 0, "res": res.task_id})
