@@ -21,9 +21,9 @@ drf-yasg = "*"
 django-cors-headers = "*"
 python-dotenv = "*"
 psycopg2 = "*"
-logstash = "*"
+#logstash = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.10"
+python_version = "3.9.1"
