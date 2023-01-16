@@ -1,9 +1,10 @@
+import os
 from datetime import datetime
 from elasticsearch_dsl import Document, Date, Integer, Keyword, Text
 from elasticsearch_dsl.connections import connections
 
 # Define a default Elasticsearch client
-connections.create_connection(hosts=['localhost'])
+connections.create_connection(hosts=[os.getenv("ELASTIC_SEARCH_ENDPOINT", "127.0.0.1")])
 
 
 class ArticleDocument(Document):

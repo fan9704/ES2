@@ -1,3 +1,5 @@
+import os
+
 from django.http import JsonResponse
 from django.views.generic import TemplateView
 from django_elastico_vuejs.models.api.models import ArticleRequestSerializer, SearchArticleRequestSerializer, \
@@ -9,11 +11,38 @@ from elasticsearch_dsl import Q
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+import logging
+import logstash
+import sys
 
 init_es()
 
 client = Elasticsearch()
 
+host = os.getenv("LOGSTASH_SERVER_IP",'localhost')
+# test_logger = logging.getLogger('python-logstash-logger')
+# test_logger.setLevel(logging.INFO)
+# # UDP
+# # test_logger.addHandler(logstash.LogstashHandler(host, 12201, version=1))
+#
+# # TCP
+# test_logger.addHandler(logstash.TCPLogstashHandler(host, 5000, version=1))
+#
+# test_logger.error('python-logstash: test logstash error message.')
+# test_logger.info('python-logstash: test logstash info message.')
+# test_logger.warning('python-logstash: test logstash warning message.')
+#
+# # add extra field to logstash message
+# extra = {
+#     'test_string': 'python version: ' + repr(sys.version_info),
+#     'test_boolean': True,
+#     'test_dict': {'a': 1, 'b': 'c'},
+#     'test_float': 1.23,
+#     'test_integer': 123,
+#     'test_list': [1, 2, '3'],
+# }
+# test_logger.info('python-logstash: test extra fields', extra=extra)
+# print('done,please see kibana')
 
 class Articles(TemplateView):
     template_name = 'django_elastico_vuejs/articles.html'
@@ -26,8 +55,10 @@ class Articles(TemplateView):
 
 class AddArticle(APIView):
     def post(self, request):
+        print(request.data)
         serializer = ArticleRequestSerializer(data=request.data)
         serializer.is_valid()
+        print()
         article_request = serializer.create(serializer.validated_data)
 
         article_document = ArticleDocument(title=article_request.title,
