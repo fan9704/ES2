@@ -32,6 +32,12 @@ jobs:
       - name: Install Dependencies from pipenv
         run: |
             pipenv install
+      - name: Django Make Migration Checking
+        run: |
+            pipenv run python manage.py makemigrations
+      - name: Django Migrate Database to PostgreSQL
+        run: |
+            pipenv run python manage.py migrate
       - name: Run tests
         run: |
             pipenv run python manage.py test

@@ -19,6 +19,8 @@ celery -A django_elasticsearch worker -l info
 ### Django GitHub Action CI
 
 1. [Django Test Pipeline Example](https://www.codingforentrepreneurs.com/blog/django-github-actions/)
+2. [GitHub Action Environment Variables use secret](https://docfunc.com/posts/68/%E4%BD%BF%E7%94%A8-github-action-%E4%BE%86%E5%81%9A%E7%B0%A1%E5%96%AE%E7%9A%84-cicd-post)
+
 
 ### PostgreSQL
 
