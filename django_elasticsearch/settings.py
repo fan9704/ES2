@@ -98,9 +98,9 @@ WSGI_APPLICATION = 'django_elasticsearch.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv("POSTGRES_DB"),
-        'USER': os.getenv("POSTGRES_USER"),
-        'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+        'NAME': os.getenv("POSTGRES_DB","ES2"),
+        'USER': os.getenv("POSTGRES_USER","test"),
+        'PASSWORD': os.getenv("POSTGRES_PASSWORD","123456"),
         'HOST': os.getenv("POSTGRES_DB_URL","127.0.0.1"),
         'PORT': '5432'
     }

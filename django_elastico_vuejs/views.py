@@ -12,7 +12,6 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 import logging
-import logstash
 import sys
 
 init_es()
@@ -20,16 +19,16 @@ init_es()
 client = Elasticsearch()
 
 host = os.getenv("LOGSTASH_SERVER_IP",'localhost')
-# test_logger = logging.getLogger('python-logstash-logger')
-# test_logger.setLevel(logging.INFO)
-# # UDP
-# # test_logger.addHandler(logstash.LogstashHandler(host, 12201, version=1))
-#
-# # TCP
+test_logger = logging.getLogger('python-logstash-logger')
+test_logger.setLevel(logging.INFO)
+# UDP
+# test_logger.addHandler(logstash.LogstashHandler(host, 12201, version=1))
+
+# TCP
 # test_logger.addHandler(logstash.TCPLogstashHandler(host, 5000, version=1))
 #
 # test_logger.error('python-logstash: test logstash error message.')
-# test_logger.info('python-logstash: test logstash info message.')
+test_logger.info('python-logstash: test logstash info message.')
 # test_logger.warning('python-logstash: test logstash warning message.')
 #
 # # add extra field to logstash message

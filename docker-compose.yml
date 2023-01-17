@@ -4,7 +4,7 @@ services:
     image: postgres:13.2-alpine
     restart: always
     environment:
-      POSTGRES_DB: postgres
+      POSTGRES_DB: ES2
       POSTGRES_USER: test
       POSTGRES_PASSWORD: 123456
     ports:
@@ -47,11 +47,11 @@ services:
     ports:
       - "5601:5601"
   logstash:
-    build:
-      context: logstash/
-    volumes:
-      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
-      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
+    image: docker.elastic.co/logstash/logstash-oss:7.9.1
+    container_name: logstash
+#    volumes:
+#      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+#      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
     ports:
       - "5000:5000"
       - "12201:12201/udp"
