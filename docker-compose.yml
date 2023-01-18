@@ -3,6 +3,7 @@ services:
   db:
     image: postgres:13.2-alpine
     restart: always
+    container_name: postgreSQL-Database
     environment:
       POSTGRES_DB: ES2
       POSTGRES_USER: test
@@ -11,6 +12,7 @@ services:
       - "5432:5432"
   pgadmin:
     image: dpage/pgadmin4:latest
+    container_name: pgAdmin
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: b10923057@gemail.yuntech.edu.tw
@@ -59,6 +61,18 @@ services:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
     depends_on:
       - elasticsearch
+  rabbitmq:
+    image: rabbitmq:3.9.10-management
+    hostname: rabbitmq
+    container_name: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_VHOST=/
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
 volumes:
   elasticsearch-data:
     driver: local

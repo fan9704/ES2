@@ -13,10 +13,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 import logging
 import sys
-
-init_es()
-
-client = Elasticsearch()
+if os.getenv("OPEN_ES", False):
+    init_es()
+    client = Elasticsearch()
 
 host = os.getenv("LOGSTASH_SERVER_IP",'localhost')
 test_logger = logging.getLogger('python-logstash-logger')
