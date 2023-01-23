@@ -1,5 +1,9 @@
 # Implement the search feature using Django, Elasticsearch, and Vue.js 
 
+Use Elastic Stack Software Structure
+
+![](./doc/ELK.png)
+
 This is an initial proof of concept app of how to implement a search feature using Elasticsearch with Django and Vue.js.
 
 Content:
